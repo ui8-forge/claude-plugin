@@ -1,0 +1,28 @@
+{
+  "name": "forge",
+  "version": "1.0.0",
+  "description": "A visual brain for your agents. Find, preview, share and reuse Forge Fragments, small live pieces of interface with variants, settings and the guidelines for using them, from Claude and Claude Code.",
+  "author": {
+    "name": "Forge",
+    "email": "support@ui8.ai",
+    "url": "https://ui8.ai/forge/"
+  },
+  "homepage": "https://ui8.ai/forge/",
+  "repository": "https://github.com/ui8-forge/claude-plugin",
+  "license": "LicenseRef-Forge-Terms",
+  "keywords": [
+    "forge",
+    "fragments",
+    "ui",
+    "react",
+    "design-system",
+    "components",
+    "prototyping",
+    "skills"
+  ],
+  "icon": "./assets/forge-logo.png",
+  "documentationUrl": "https://ui8.ai/forge/docs",
+  "supportUrl": "https://forge.ui8.ai/support",
+  "privacyPolicyUrl": "https://forge.ui8.ai/privacy",
+  "termsOfServiceUrl": "https://forge.ui8.ai/terms"
+}

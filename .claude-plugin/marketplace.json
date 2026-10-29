@@ -1,0 +1,17 @@
+{
+  "name": "ui8-forge",
+  "description": "Forge for Claude: find, preview, share and reuse your Forge Fragments from Claude and Claude Code.",
+  "owner": {
+    "name": "Forge",
+    "email": "support@ui8.ai",
+    "url": "https://ui8.ai/forge/"
+  },
+  "plugins": [
+    {
+      "name": "forge",
+      "source": "./",
+      "description": "A visual brain for your agents. Find, preview, share and reuse Forge Fragments, small live pieces of interface with variants, settings and the guidelines for using them, from Claude and Claude Code.",
+      "version": "1.0.0"
+    }
+  ]
+}
