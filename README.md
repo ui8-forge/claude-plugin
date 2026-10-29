@@ -1,4 +1,4 @@
-# Forge for Claude
+# Forge by UI8 for Claude
 
 **A visual brain for your agents.**
 
@@ -11,7 +11,7 @@ This plugin brings Forge into Claude and Claude Code. It connects to the Forge s
 In the Claude apps:
 
 - Describe what you're picturing and find the fragments that match, across all your workspaces.
-- Share a fragment on its own page at yourname.ui8.dev, with a password if you like, and take it down whenever you want.
+- Share a fragment on its own ui8.dev page, locked to the people you choose if you like, and take it down whenever you want.
 - Read the comments and suggested changes people leave, reply to them, and mark them done.
 - Keep your library organized: start collections, then move, rename, tag and archive fragments (you can always bring archived ones back), or remix a shared collection into your own workspace.
 
@@ -27,10 +27,10 @@ In Claude Code:
 
 ```
 /plugin marketplace add ui8-forge/claude-plugin
-/plugin install forge@ui8-forge
+/plugin install forge-ui8@ui8-forge
 ```
 
-**Claude apps:** Customize › Plugins › Add › Add marketplace, then enter `ui8-forge/claude-plugin` and add Forge.
+**Claude apps:** Customize › Plugins › Add › Add marketplace, then enter `ui8-forge/claude-plugin` and add Forge by UI8.
 
 The first time Claude uses Forge, it asks you to sign in. You sign in once with your Forge email, and the plugin can only see the workspaces you belong to.
 

@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "forge",
+      "name": "forge-ui8",
       "source": "./",
       "description": "A visual brain for your agents. Find, preview, share and reuse Forge Fragments, small live pieces of interface with variants, settings and the guidelines for using them, from Claude and Claude Code.",
       "version": "1.0.0"

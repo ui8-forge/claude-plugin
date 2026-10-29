@@ -107,10 +107,12 @@ only; never hand it to the user.
 
 ## Publish
 
-`fragment_publish { fragmentId, slug?, password? }` serves a pinned snapshot
-at `https://<slug>.ui8.dev/`; later edits stay private until the next
-publish. `fragment_set_password` changes the password on a live page without
-republishing; `fragment_unpublish` takes the page down and keeps the slug.
+`fragment_publish { fragmentId, slug? }` serves a pinned snapshot on the
+fragment's own ui8.dev page, named by its slug; later edits stay private until
+the next publish. A page can be gated behind one shared phrase the user picks:
+publish takes it as an option, and `fragment_set_password` adds, changes or
+removes it on a live page without republishing. `fragment_unpublish` takes
+the page down and keeps the slug.
 
 ## Feedback
 
