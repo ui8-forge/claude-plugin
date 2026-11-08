@@ -1,6 +1,6 @@
 {
   "name": "ui8-forge",
-  "description": "Forge for Claude: find, preview, share and reuse your Forge Fragments from Claude and Claude Code.",
+  "description": "Forge for Claude: find, preview, share and reuse your Forge projects from Claude and Claude Code.",
   "owner": {
     "name": "UI8",
     "email": "support@ui8.ai",
@@ -10,12 +10,12 @@
     {
       "name": "forge-ui8",
       "source": "./",
-      "description": "A visual brain for your agents. Find, preview, share and reuse Forge Fragments, small live pieces of interface with variants, settings and the guidelines for using them, from Claude and Claude Code.",
-      "version": "1.0.2",
+      "description": "Forge is an AI design and prototyping tool for creating interactive websites, app interfaces, dashboards and animated UI, organized into collections your agents can reuse.",
+      "version": "1.0.3",
       "category": "creativity",
       "keywords": [
         "forge",
-        "fragments",
+        "projects",
         "design",
         "ui-design",
         "design-system",

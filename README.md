@@ -2,11 +2,11 @@
 
 **A visual brain for your agents.**
 
-Forge is a design and prototyping tool built on live, reusable UI: landing page sections, app screens, dashboards, animated heroes, shader backgrounds and video. With the Forge plugin, describe what you need, find the piece that fits, preview it live, and make it part of your work.
+Forge is an AI design and prototyping tool for creating interactive websites, app interfaces, dashboards and animated UI. With the Forge plugin, describe what you want to make and turn your ideas, references or existing UI into live, editable work you can explore and refine.
 
-Explore each project's components and adjustable props, and compare directions side by side before you commit. Publish any project to its own link to share for review, gather comments and proposed edits from your team, and resolve them in one place. Organize your work into collections, with skills that capture how each piece should be used, so every agent designs and builds with the same visual language.
+Create a landing page, prototype an app screen, or build an animated hero or shader background with working interactions. Compare design directions side by side, tune them with adjustable controls, and save reusable skills and brand files for a consistent look. Publish any project to its own link for review, gather comments and proposed edits from your team, and resolve them in one place.
 
-Forge supports designers, product managers, founders, marketers, developers and teams building a consistent design system. Keep shared UI together in team workspaces and remix collections from others. In a coding environment with file access, pull React components into your project, adapted to its code and conventions, or create and edit projects to keep refining them.
+Forge supports designers, product managers, founders, marketers, developers and teams building a consistent design system. Keep related work together in collections and team workspaces, and remix collections others share. In a coding environment with file access, bring Forge projects into your app as React components adapted to its code, or create and edit projects to keep refining them.
 
 This plugin brings Forge into Claude and Claude Code. It connects to the Forge server at `https://forge.ui8.ai/mcp` and adds a skill that teaches Claude how to use your projects well.
 

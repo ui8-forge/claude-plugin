@@ -1,6 +1,6 @@
 ---
-name: forge-fragments
-description: Use Forge Projects (hosted React projects made of components, filed in collections with skills) through the Forge MCP. Use when the user mentions Forge, a Forge project or component, a fragment, a Forge collection or kit, a ui8.dev page, or a forge.ui8.ai share link; when they want to find, preview, publish, remix or organize UI they keep in Forge; when they ask about feedback on a Forge project; and in a codebase before building a piece of UI they may already have in Forge. Not for general UI questions with no Forge workspace involved.
+name: forge-projects
+description: Use Forge Projects (hosted, live React components, organized in collections with skills) through the Forge MCP. Use when the user mentions Forge, a Forge project or component, a Forge collection or kit, a ui8.dev page, or a forge.ui8.ai share link; when they want to find, preview, publish, remix or organize UI they keep in Forge; when they ask about feedback on a Forge project; and in a codebase before building a piece of UI they may already have in Forge. Not for general UI questions with no Forge workspace involved.
 ---
 
 # Forge Projects
