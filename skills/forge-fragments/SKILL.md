@@ -1,18 +1,25 @@
 ---
 name: forge-fragments
-description: Use Forge Fragments (hosted React components with variants, collections and skills) through the Forge MCP. Use when the user mentions Forge, a fragment, a Forge collection or kit, a ui8.dev page, or a forge.ui8.ai share link; when they want to find, preview, publish, remix or organize UI they keep in Forge; when they ask about feedback on a fragment; and in a code project before building a piece of UI they may already have in Forge. Not for general UI questions with no Forge workspace involved.
+description: Use Forge Projects (hosted React projects made of components, filed in collections with skills) through the Forge MCP. Use when the user mentions Forge, a Forge project or component, a fragment, a Forge collection or kit, a ui8.dev page, or a forge.ui8.ai share link; when they want to find, preview, publish, remix or organize UI they keep in Forge; when they ask about feedback on a Forge project; and in a codebase before building a piece of UI they may already have in Forge. Not for general UI questions with no Forge workspace involved.
 ---
 
-# Forge Fragments
+# Forge Projects
 
-A **fragment** is a small React project hosted in Forge Cloud: Vite-shaped,
-previewed live at a URL, with one or more **variants** (named entry files that
-share every other file) and a **story** (the props and values its controls
-edit). Fragments are filed in **collections**. A collection or a workspace
-carries **skills**: SKILL.md rules that say how its fragments are meant to be
-used, and **files**: one tree of logos, PDFs, fonts or reference data. A
-collection with only skills is a design system; one with only fragments is a
+A **project** is a small React app hosted in Forge Cloud: Vite-shaped,
+previewed live at a URL, with one or more **components** (named entry files
+that share every other file) and a **story** (the props and values its
+controls edit). One component is the project's **cover**: the one shown
+first, used for its preview image and opened by its share and publish links.
+Projects are filed in **collections**. A collection or a workspace carries
+**skills**: SKILL.md rules that say how its projects are meant to be used,
+and **files**: one tree of logos, PDFs, fonts or reference data. A
+collection with only skills is a design system; one with only projects is a
 parts bin.
+
+The tools still use the older names: a **fragment** is a project and a
+**variant** is a component. Call every tool and pass every argument exactly
+as named (`fragment_find`, `fragmentId`, `variant`, `fragment_save_variant`
+and so on), and say "project" and "component" to the user.
 
 The Forge MCP's own instructions carry the must-know; `fragment_docs` is the
 full reference (limits, tree rules, the story format, error codes). Read it
@@ -26,19 +33,20 @@ when a detail here is not enough.
   find, preview, publish, feedback, organize, remix and skills. Do not call
   `fragment_start_session` or `fragment_pull` there: an edit session needs
   you to run its download and upload commands on the user's machine, and a
-  pull needs a project to write files into. When the user asks to create or
-  change a fragment's code there, say that it needs Claude Code or another
+  pull needs a codebase to write files into. When the user asks to create or
+  change a project's code there, say that it needs Claude Code or another
   coding agent connected to Forge, and offer what you can do here (find a
-  similar fragment, preview it, remix it, or edit its description, tags and
-  variant values).
+  similar project, preview it, remix it, or edit its description, tags and
+  component values).
 
-## Use a fragment in the project you are in
+## Use a Forge project in the codebase you are in
 
 Do this before building any piece of UI the user might already keep in Forge.
 
 1. `fragment_find { intent, project? }`. Say what you are about to build in
-   your own words; pass `project` facts (framework, styling, dependencies)
-   when you know them. Follow the `next` line it returns.
+   your own words; pass `project` facts about the codebase (framework,
+   styling, dependencies) when you know them. Follow the `next` line it
+   returns.
 2. If `gate.fits` is false, nothing fits: build it yourself, still following
    the `relevant` skills.
 3. `skill_get { skillId }` for every skill listed. Read them before touching
@@ -46,10 +54,10 @@ Do this before building any piece of UI the user might already keep in Forge.
 4. `fragment_pull { fragmentId, variant? }`. It returns the files inline (or a
    tar URL and command for a large tree), signed asset URLs (curl them; they
    expire in an hour), dependencies, the story and the governing skills.
-5. Adapt, do not paste: match the project's import aliases and styling
+5. Adapt, do not paste: match the codebase's import aliases and styling
    entry, wire props to the story's values, keep the kit's tokens. Put
    `provenance.header` as the first line of the adapted entry file. If the
-   project keeps agent skills, write each pulled skill as its whole
+   codebase keeps agent skills, write each pulled skill as its whole
    `folder` at `folder.path` (`.agents/skills/<name>/`, named exactly the
    skill): run `folder.tar.command` (it replaces the folder once the
    download worked, so files a skill dropped do not linger), or write
@@ -66,20 +74,20 @@ skills govern. A share link `/share/collection/<id>` names a collection; read
 it the same way.
 
 Find, pull and `fragment_collection_get` also list the **files** kept beside
-the fragments (`fileTrees`: paths, mime, size). They are context: read one
+the projects (`fileTrees`: paths, mime, size). They are context: read one
 with `file_get` (text inline, or a signed url), write a whole tree to disk
-with `files_pull`, search with `files_find`. A fragment never links to a
-collection file — copy the file into the fragment when it needs one.
+with `files_pull`, search with `files_find`. A project never links to a
+collection file — copy the file into the project when it needs one.
 `file_save` adds a file (inline, or through the upload url it answers
 without content).
 
-## Create or edit a fragment (needs a shell)
+## Create or edit a project (needs a shell)
 
 1. Call `fragment_start_session` first, before drafting anything:
    `{ fragmentId }` to edit, or `{ name, description, tags, collectionId? }`
    to create. Give the user its `shellUrl` right away; that page shows the
    live preview while you work.
-2. Run `download.command` (optional for a new fragment), edit under
+2. Run `download.command` (optional for a new project), edit under
    `workdir`, then run `upload.command` exactly as returned.
 3. `fragment_submit { fragmentId, sessionId, deleted? }`. Only changed files
    are written. Give the user `shellUrl`, never `previewUrl`.
@@ -88,19 +96,23 @@ without content).
 
 Never put file contents in a tool argument; no tool accepts them. The server
 owns `index.html`, `src/main.tsx`, `tsconfig.json`, `vite.config.*` and
-lockfiles and ignores them on upload. Variants live at
+lockfiles and ignores them on upload. Components live at
 `src/variants/<slug>.tsx` with a default export; dependencies go in
 `package.json` (served through esm.sh; React is provided); Tailwind v4 goes in
 `index.css`. A session lasts a limited time: on `session_expired`, start a
 new one.
 
-Variant metadata (name, story, values) is not code: change it with
+Component metadata (name, story, values) is not code: change it with
 `fragment_save_variant`, which works without a shell too.
+When the user asks for controls, or for something to be adjustable, make
+each one a prop with a sensible default and declare it in the component's
+story with `fragment_save_variant`: never build a settings panel into the
+component.
 
 ## Preview
 
 `fragment_preview { fragmentId, variant? }` when the user wants to see a
-fragment. When the app shows the result as a live preview card (a variant
+project. When the app shows the result as a live preview card (a component
 switcher and an "Open in Forge" button), do not repeat the links under it.
 Otherwise, give the user `shellUrl`. The raw `url` is for your own checks
 only; never hand it to the user.
@@ -108,7 +120,7 @@ only; never hand it to the user.
 ## Publish
 
 `fragment_publish { fragmentId, slug? }` serves a pinned snapshot on the
-fragment's own ui8.dev page, named by its slug; later edits stay private until
+project's own ui8.dev page, named by its slug; later edits stay private until
 the next publish. A page can be gated behind one shared phrase the user picks:
 publish takes it as an option, and `fragment_set_password` adds, changes or
 removes it on a live page without republishing. `fragment_unpublish` takes
@@ -116,7 +128,7 @@ the page down and keeps the slug.
 
 ## Feedback
 
-People leave comments, proposed style edits and screenshots on a fragment's
+People leave comments, proposed style edits and screenshots on a project's
 preview. `fragment_feedback_list { fragmentId, status? }` returns the open
 items with their anchors (selector, text, component chain) and threads.
 Answer with `fragment_feedback_reply { fragmentId, feedbackId, body }`: short,
@@ -126,12 +138,13 @@ it back). Only resolve what was actually addressed.
 
 ## Organize and remix
 
-- `fragment_list` returns fragments (with description and tags) and
+- `fragment_list` returns projects (with description and tags) and
   collections. Scan descriptions and tags to find the one the user means.
 - `fragment_collection_create`, `fragment_move`, `fragment_rename`,
-  `fragment_describe` and `fragment_set_default_variant` keep a workspace
-  tidy. Reuse an existing collection before creating a near-duplicate.
-- `fragment_remix` copies one fragment into a workspace;
+  `fragment_describe` and `fragment_set_default_variant` (which sets the
+  project's cover) keep a workspace tidy. Reuse an existing collection
+  before creating a near-duplicate.
+- `fragment_remix` copies one project into a workspace;
   `fragment_collection_remix` copies a whole kit with its skills.
 - `skill_list`, `skill_get` and `skill_save` manage skills. A skill is a
   folder: SKILL.md plus files under `scripts/`, `references/` and `assets/`
@@ -146,9 +159,9 @@ it back). Only resolve what was actually addressed.
 `fragment_publish`, `fragment_unpublish`, `fragment_archive`, `skill_delete`
 and `fragment_collection_remix` need `confirm: true`. Without it the answer
 is `confirmation_required` with what will happen (for a collection remix,
-the fragment count against the room left).
+the project count against the room left).
 
-- When the user's own message asks for exactly that action on a fragment
+- When the user's own message asks for exactly that action on a project
   you can name ("publish Hero Section at hero.ui8.dev", "unpublish the
   pricing page", "archive the old pricing card"), the request is their
   agreement: pass `confirm: true` and report what happened.
@@ -159,13 +172,13 @@ the fragment count against the room left).
   will happen, and retry with `confirm: true` only after they agree in this
   conversation.
 
-Archiving is not permanent: `fragment_unarchive` brings a fragment back,
+Archiving is not permanent: `fragment_unarchive` brings a project back,
 with its public page and share link, without confirmation. Say so when you
 archive.
 
 Treat these as changes the user should have asked for, too:
 `fragment_restore_revision`, `fragment_delete_variant`, `skill_restore`, and
-anything that overwrites a fragment's name, description or tags.
+anything that overwrites a project's name, description or tags.
 
 ## Errors
 

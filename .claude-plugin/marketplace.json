@@ -11,7 +11,29 @@
       "name": "forge-ui8",
       "source": "./",
       "description": "A visual brain for your agents. Find, preview, share and reuse Forge Fragments, small live pieces of interface with variants, settings and the guidelines for using them, from Claude and Claude Code.",
-      "version": "1.0.0"
+      "version": "1.0.2",
+      "category": "creativity",
+      "keywords": [
+        "forge",
+        "fragments",
+        "design",
+        "ui-design",
+        "design-system",
+        "ui-components",
+        "ui-libraries",
+        "component-library",
+        "react",
+        "animation",
+        "motion",
+        "shaders",
+        "video",
+        "live-preview",
+        "design-feedback",
+        "agent-skills",
+        "prototyping",
+        "collaboration",
+        "team-workspaces"
+      ]
     }
   ]
 }
